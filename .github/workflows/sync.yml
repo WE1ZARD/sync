@@ -46,7 +46,7 @@ jobs:
         curl -sL https://github.com/WE1ZARD/wiliwili/releases/download/latest/wiliwili.zip -o wiliwili.zip
         curl -sL https://api.github.com/repos/HamletDuFromage/switch-cheats-db/releases | jq ".[0].assets" | jq ".[0].browser_download_url" | xargs -I {} curl -sL {} -o NX-60FPS-RES-GFX-Cheats.zip
 
-        curl -sL https://api.github.com/repos/masagrator/SaltyNX/releases/latest | jq '.assets' | jq '.[0].url' | xargs -I {} curl -sL {} -o SaltyNX.zip
+        curl -sL https://api.github.com/repos/masagrator/SaltyNX/releases | jq ".[0].assets" | jq ".[0].browser_download_url" | xargs -I {} curl -sL {} -o SaltyNX.zip
 
     - name: 'Release'
       uses: softprops/action-gh-release@master
