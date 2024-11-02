@@ -44,10 +44,12 @@ jobs:
         curl -sL -H "Authorization: token ${{ secrets.MAGIC_TOKEN }}" -sL https://api.github.com/repos/WE1ZARD/nx-hbmenu/releases/latest | jq '.assets' | jq '.[1].url' | xargs -I {} curl -sL {} -H "Authorization: token ${{ secrets.MAGIC_TOKEN }}" -H 'Accept:application/octet-stream' -o hbmenu.nsp
         
         curl -sL https://github.com/WE1ZARD/wiliwili/releases/download/latest/wiliwili.zip -o wiliwili.zip
+        
         curl -sL https://api.github.com/repos/HamletDuFromage/switch-cheats-db/releases | jq ".[0].assets" | jq ".[0].browser_download_url" | xargs -I {} curl -sL {} -o NX-60FPS-RES-GFX-Cheats.zip
-
         curl -sL https://api.github.com/repos/masagrator/SaltyNX/releases | jq ".[0].assets" | jq ".[0].browser_download_url" | xargs -I {} curl -sL {} -o SaltyNX.zip
-
+        curl -sL https://api.github.com/repos/masagrator/ReverseNX-Tool/releases | jq ".[0].assets" | jq ".[0].browser_download_url" | xargs -I {} curl -sL {} -o ReverseNX-Tool.nro
+        mkdir -p ./switch ; mv ./ReverseNX-Tool.nro ./switch ; zip -rq ReverseNX-Tool.zip ./switch
+        
     - name: 'Release'
       uses: softprops/action-gh-release@master
       with:
@@ -67,6 +69,7 @@ jobs:
           package_Updater.zip
           package_R2Config.zip
           ReverseNX-RT.zip
+          ReverseNX-Tool.zip
           SaltyNX.zip
           Status-Monitor-Overlay.zip
           sys-clk-oc.zip
