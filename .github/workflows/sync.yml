@@ -47,9 +47,13 @@ jobs:
         
         curl -sL https://api.github.com/repos/HamletDuFromage/switch-cheats-db/releases | jq ".[0].assets" | jq ".[0].browser_download_url" | xargs -I {} curl -sL {} -o NX-60FPS-RES-GFX-Cheats.zip
         curl -sL https://api.github.com/repos/masagrator/SaltyNX/releases | jq ".[0].assets" | jq ".[0].browser_download_url" | xargs -I {} curl -sL {} -o SaltyNX.zip
-        curl -sL https://api.github.com/repos/masagrator/ReverseNX-Tool/releases | jq ".[0].assets" | jq ".[0].browser_download_url" | xargs -I {} curl -sL {} -o ReverseNX-Tool.nro
-        mkdir -p ./switch ; mv ./ReverseNX-Tool.nro ./switch ; zip -rq ReverseNX-Tool.zip ./switch
         
+        curl -sL https://api.github.com/repos/masagrator/ReverseNX-Tool/releases | jq ".[0].assets" | jq ".[0].browser_download_url" | xargs -I {} curl -sL {} -o ReverseNX-Tool.nro
+        mkdir -p ./switch ; mv ./ReverseNX-Tool.nro ./switch ; zip -rq ReverseNX-Tool.zip ./switch ; rm -rf ./switch
+        
+        curl -sL https://api.github.com/repos/dslatt/nso-icon-tool/releases | jq ".[0].assets" | jq ".[0].browser_download_url" | xargs -I {} curl -sL {} -o nso-icon-tool.nro
+        mkdir -p ./switch ; mv ./nso-icon-tool.nro ./switch ; zip -rq nso-icon-tool.zip ./switch ; rm -rf ./switch
+
     - name: 'Release'
       uses: softprops/action-gh-release@master
       with:
@@ -81,3 +85,4 @@ jobs:
           mhr-patches.zip
           ldn_mitm.zip
           hbmenu.nsp
+          nso-icon-tool.zip
